@@ -1,13 +1,13 @@
 package com.example.authentificationservice.repository;
 
 
-import com.example.authentificationservice.entity.Utilisateur;
+import com.example.authentificationservice.entity.User;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
 @Repository
-public interface UtilisateurRepository extends CrudRepository<Utilisateur, Long> {
-    Optional<Utilisateur> findByUsername(String username);
+public interface UserRepository extends CrudRepository<User, Long> {
+    Optional<User> findByUsername(String username);
 }

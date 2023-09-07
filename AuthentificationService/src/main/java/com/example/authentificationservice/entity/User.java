@@ -5,13 +5,11 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
 @Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Utilisateur {
+public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,10 +17,12 @@ public class Utilisateur {
 
     private String username;
     private String password;
+    private boolean driver;
 
-    public Utilisateur(String username, String encodedPassword) {
+    public User(String username, String encodedPassword,boolean driver) {
         this.username = username;
         this.password = encodedPassword;
+        this.driver = driver;
     }
 
 }
