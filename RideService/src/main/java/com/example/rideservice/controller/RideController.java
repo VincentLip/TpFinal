@@ -59,7 +59,6 @@ public class RideController {
         RestClient<String, String> restClient = new RestClient<>();
         if(restClient.testToken(token, String.class)) {
             Ride ride = rideService.updateUserRide(rideId,userId);
-            System.out.println(ride);
             return ResponseEntity.ok(ride);
         }
         return ResponseEntity.status(401).body(null);
