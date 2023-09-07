@@ -12,5 +12,6 @@ public class RideResponseDTO {
 
     private List<Ride> rides;
     private UserDTO userDTO;
+    private UserDTO userDTO1;
 
 }

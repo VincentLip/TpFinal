@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.apache.catalina.User;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
@@ -27,5 +28,6 @@ public class Ride {
     private String arrival;
 
     private int userId;
+    private int userId1;
 
 }

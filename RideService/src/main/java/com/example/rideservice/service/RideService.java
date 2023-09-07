@@ -47,18 +47,33 @@ public class RideService {
                 .build();
         return rideResponseDTO;
     }
+
+    public List<Ride> getRideByArrival(String arrival) {
+        List<Ride> rides = rideRepository.findRideByArrival(arrival);
+        return rides;
+    }
+
+
+
     public void deleteRide(int id) {
             Ride ride = getRideById(id);
             rideRepository.delete(ride);
     }
-//
-//    public Ride updateRide(int id, Ride ride) {
-//        Ride oldRide= getRideById(id);
-//        oldRide.setDate(ride.getDate());
-//        oldRide.setDepart(ride.getDepart());
-//        oldRide.setArrival(ride.getArrival());
-//            return rideRepository.save(oldRide);
-//
-//    }
+
+    public Ride updateUserRide(int rideId,int userId) {
+        Ride oldRide= getRideById(rideId);
+        oldRide.setUserId1(userId);
+        return rideRepository.save(oldRide);
+
+    }
+
+    public Ride updateRide(int id, Ride ride) {
+        Ride oldRide= getRideById(id);
+        oldRide.setDate(ride.getDate());
+        oldRide.setDepart(ride.getDepart());
+        oldRide.setArrival(ride.getArrival());
+            return rideRepository.save(oldRide);
+
+    }
 
 }
