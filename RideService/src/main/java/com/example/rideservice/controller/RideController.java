@@ -1,6 +1,7 @@
 package com.example.rideservice.controller;
 
 import com.example.rideservice.dto.RideResponseDTO;
+import com.example.rideservice.dto.UserDTO;
 import com.example.rideservice.entity.Ride;
 import com.example.rideservice.service.RideService;
 import com.example.rideservice.tool.RestClient;
@@ -23,18 +24,21 @@ public class RideController {
 
 
     @PostMapping("")
-    public ResponseEntity<Ride> post(@RequestParam Date date, @RequestParam String departTown, @RequestParam String arrivalTown,  @RequestHeader(HttpHeaders.AUTHORIZATION) String token) {
+    public ResponseEntity<Ride> postRide( @RequestParam Date date,@RequestParam String depart, @RequestParam String arrival,@RequestParam int userId,  @RequestHeader(HttpHeaders.AUTHORIZATION) String token) {
         RestClient<String, String> restClient = new RestClient<>();
-        if(restClient.testToken(token, String.class)) {
-            Ride ride = rideService.createRide(date,departTown,arrivalTown );
+        UserDTO userDTO = getUser(userId, token).getBody().getUserDTO();
+        System.out.println(userDTO.isDriver());
+        if(restClient.testToken(token, String.class) && userDTO.isDriver()) {
+            Ride ride = rideService.createRide(date,depart,arrival,userId);
             return ResponseEntity.ok(ride);
         }
         return ResponseEntity.status(401).body(null);
     }
 
     @GetMapping("")
-    public ResponseEntity<List<Ride>> getAll(@RequestHeader(HttpHeaders.AUTHORIZATION) String token) {
+    public ResponseEntity<List<Ride>> getAllRide(@RequestHeader(HttpHeaders.AUTHORIZATION) String token) {
         RestClient<String, String> restClient = new RestClient<>();
+
         if(restClient.testToken(token, String.class)) {
             List<Ride> rides = rideService.getAllRide();
             return ResponseEntity.ok(rides);

@@ -7,11 +7,11 @@ import org.springframework.web.client.RestTemplate;
 
 
 public class RestClient<T,V> {
-    private String urlApiUtilisateur = "http://localhost:8080/api/";
+    private String urlApiUser = "http://localhost:8081/api/";
 
-    private String urlApiComment = "http://localhost:8081/api/";
+    private String urlApiComment = "http://localhost:8083/api/";
 
-    private String urlApiToken = "http://localhost:8083/api/test";
+    private String urlApiToken = "http://localhost:8080/api/test";
     private RestTemplate template;
     private HttpHeaders httpHeaders;
     private HttpStatus httpStatus;
@@ -23,9 +23,9 @@ public class RestClient<T,V> {
         httpHeaders.add("content-type", "application/json");
     }
 
-    public T getUtilisateur(String uri, Class<T> type) {
+    public T getUser(String uri, Class<T> type) {
         HttpEntity<String> requestEntity = new HttpEntity<>("", httpHeaders);
-        ResponseEntity<T> response = template.exchange(urlApiUtilisateur+uri, HttpMethod.GET, requestEntity, type);
+        ResponseEntity<T> response = template.exchange(urlApiUser+uri, HttpMethod.GET, requestEntity, type);
         return response.getBody();
     }
 

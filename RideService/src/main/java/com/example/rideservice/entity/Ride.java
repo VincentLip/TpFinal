@@ -19,12 +19,13 @@ public class Ride {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
     private int id;
 
     @DateTimeFormat(pattern = "dd/MM/yyyy")
     private Date date;
-    private String departTown;
-    private String arrivalTown;
+    private String depart;
+    private String arrival;
+
+    private int userId;
 
 }

@@ -11,5 +11,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class UserDTO {
     private int id;
-    private String email;
+    private String username;
+    private boolean driver;
 }

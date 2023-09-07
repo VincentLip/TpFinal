@@ -19,6 +19,6 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String email;
+    private String username;
     private boolean driver;
 }

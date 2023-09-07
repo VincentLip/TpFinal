@@ -21,8 +21,8 @@ public class RideService {
         this.rideRepository = rideRepository;
     }
 
-    public Ride createRide(Date date,String departTown,String arrivalTown) {
-        Ride ride = Ride.builder().date(date).departTown(departTown).arrivalTown(arrivalTown).build();
+    public Ride createRide(Date date ,String depart,String arrival,int userId) {
+        Ride ride = Ride.builder().date(date).depart(depart).arrival(arrival).userId(userId).build();
         rideRepository.save(ride);
         return ride;
     }
@@ -43,7 +43,7 @@ public class RideService {
         RestClient<UserDTO, String> restClient = new RestClient<>();
         RideResponseDTO rideResponseDTO = RideResponseDTO.builder()
                 .rides(rideRepository.findRideByUserId(userId))
-                .userDTO(restClient.getUtilisateur("user/"+userId, UserDTO.class))
+                .userDTO(restClient.getUser("user/"+userId, UserDTO.class))
                 .build();
         return rideResponseDTO;
     }
@@ -51,14 +51,14 @@ public class RideService {
             Ride ride = getRideById(id);
             rideRepository.delete(ride);
     }
-
-    public Ride updateRide(int id, Ride ride) {
-        Ride oldRide= getRideById(id);
-        oldRide.setDate(ride.getDate());
-        oldRide.setDepartTown(ride.getDepartTown());
-        oldRide.setArrivalTown(ride.getArrivalTown());
-            return rideRepository.save(oldRide);
-
-    }
+//
+//    public Ride updateRide(int id, Ride ride) {
+//        Ride oldRide= getRideById(id);
+//        oldRide.setDate(ride.getDate());
+//        oldRide.setDepart(ride.getDepart());
+//        oldRide.setArrival(ride.getArrival());
+//            return rideRepository.save(oldRide);
+//
+//    }
 
 }

@@ -17,12 +17,6 @@ public class UserController {
     }
 
 
-    @PostMapping("")
-    public ResponseEntity<User> post( @RequestParam String email , @RequestParam Boolean driver) {
-        User user = userService.createUser(email,driver);
-        return ResponseEntity.ok(user);
-    }
-
     @GetMapping("{id}")
     public ResponseEntity<User> get(@PathVariable int id) {
         User user = userService.getUserById(id);

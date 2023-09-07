@@ -15,11 +15,11 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    public User createUser(String email,boolean driver) {
-        User user = User.builder().email(email).driver(false).build();
-        userRepository.save(user);
-        return user;
-    }
+//    public User createUser(String username,boolean driver) {
+//        User user = User.builder().username(username).driver(false).build();
+//        userRepository.save(user);
+//        return user;
+//    }
 
     public User getUserById(int id) {
         Optional<User> userAppOptional = userRepository.findById(id);
