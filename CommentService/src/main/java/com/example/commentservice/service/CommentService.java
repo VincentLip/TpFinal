@@ -14,8 +14,8 @@ public class CommentService {
         this.commentRepository = commentRepository;
     }
 
-    public Comment createComment(int userId, String title, String description) {
-        Comment comment = Comment.builder().userId(userId).title(title).description(description).build();
+    public Comment createComment(int riderId, String title, String description) {
+        Comment comment = Comment.builder().rideId(riderId).title(title).description(description).build();
         commentRepository.save(comment);
         return comment;
     }
