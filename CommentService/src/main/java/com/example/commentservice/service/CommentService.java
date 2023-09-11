@@ -1,47 +1,26 @@
 package com.example.commentservice.service;
 
+import com.example.commentservice.dto.CommentDtoRequest;
+import com.example.commentservice.dto.CommentDtoResponse;
 import com.example.commentservice.entity.Comment;
 import com.example.commentservice.repository.CommentRepository;
+import com.example.commentservice.utils.Mapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
-public class CommentService {
 
-    private final CommentRepository commentRepository;
+public interface CommentService {
 
-    public CommentService(CommentRepository commentRepository) {
-        this.commentRepository = commentRepository;
-    }
 
-    public Comment createComment(int riderId, String title, String description) {
-        Comment comment = Comment.builder().rideId(riderId).title(title).description(description).build();
-        commentRepository.save(comment);
-        return comment;
-    }
+    Comment createComment(String rideId,String title,String description);
 
-    public List<Comment> getAllComment(){
-        return (List<Comment>) commentRepository.findAll();
-    }
+    List<CommentDtoResponse> getAllComments();
 
-    public Comment getCommentById(int id) {
-        Optional<Comment> commentOptional = commentRepository.findById(id);
-        if(commentOptional.isPresent()) {
-            return commentOptional.get();
-        }
-        throw new RuntimeException("Not found");
-    }
+    CommentDtoResponse getCommentById(String commentId);
 
-    public void deleteRide(int id) {
-        Comment comment = getCommentById(id);
-        commentRepository.delete(comment);
-    }
+    boolean deleteCommentById(String commentId);
 
-    public Comment updateComment(int id, Comment comment) {
-        Comment oldComment= getCommentById(id);
-        oldComment.setTitle(comment.getTitle());
-        oldComment.setDescription(comment.getDescription());
-        return commentRepository.save(oldComment);
-
-    }
 }
