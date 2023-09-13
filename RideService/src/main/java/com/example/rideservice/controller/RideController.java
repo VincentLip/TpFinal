@@ -14,6 +14,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("api/ride")
+@CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST})
 public class RideController {
 
     private final RideService rideService;
@@ -36,13 +37,13 @@ public class RideController {
 
     @GetMapping("")
     public ResponseEntity<List<Ride>> getAllRide(@RequestHeader(HttpHeaders.AUTHORIZATION) String token) {
-        RestClient<String, String> restClient = new RestClient<>();
-
-        if(restClient.testToken(token, String.class)) {
+//        RestClient<String, String> restClient = new RestClient<>();
+//
+//        if(restClient.testToken(token, String.class)) {
             List<Ride> rides = rideService.getAllRide();
             return ResponseEntity.ok(rides);
-        }
-        return ResponseEntity.status(401).body(null);
+//        }
+//        return ResponseEntity.status(401).body(null);
     }
 
     @GetMapping("user/{userId}")
@@ -66,8 +67,14 @@ public class RideController {
 
 
     @RequestMapping(value = "/arrival/{arrival}", method = RequestMethod.GET)
-    public List<Ride> getRidebyArrival(@PathVariable("arrival") String arrival, @RequestHeader(HttpHeaders.AUTHORIZATION) String token){
+    public List<Ride> getRideByArrival(@PathVariable("arrival") String arrival, @RequestHeader(HttpHeaders.AUTHORIZATION) String token){
         List<Ride> rides = rideService.getRideByArrival(arrival);
+        return rides;
+    }
+
+    @RequestMapping(value = "/depart/{depart}", method = RequestMethod.GET)
+    public List<Ride> getRideByDepart(@PathVariable("depart") String depart, @RequestHeader(HttpHeaders.AUTHORIZATION) String token){
+        List<Ride> rides = rideService.getRideByDepart(depart);
         return rides;
     }
 

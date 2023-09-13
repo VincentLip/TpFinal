@@ -13,5 +13,7 @@ public interface RideRepository extends CrudRepository<Ride,Integer> {
 
     List<Ride> findRideByArrival(String arrival);
 
+    List<Ride> findRideByDepart(String depart);
+
 
 }

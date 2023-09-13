@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RequestMapping("/api/auth")
 @RestController
-@CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST})
+@CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST} )
 public class UserController {
     private final AuthenticationManager authenticationManager;
 

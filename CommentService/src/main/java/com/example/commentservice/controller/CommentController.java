@@ -22,7 +22,7 @@ public class CommentController {
 
     @PostMapping("/add")
     public ResponseEntity<Comment> createComment(@RequestParam String rideId , @RequestParam String title, @RequestParam String description){
-        return new ResponseEntity<>(commentService.createComment(rideId,title,description), HttpStatus.CREATED);
+        return new ResponseEntity<>(commentService.createComment(rideId,title,description), HttpStatus.OK);
     }
 
     public ResponseEntity<List<CommentDtoResponse>> getAllPComment(){

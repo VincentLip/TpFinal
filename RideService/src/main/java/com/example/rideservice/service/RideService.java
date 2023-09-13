@@ -53,7 +53,10 @@ public class RideService {
         return rides;
     }
 
-
+    public List<Ride> getRideByDepart(String arrival) {
+        List<Ride> rides = rideRepository.findRideByDepart(arrival);
+        return rides;
+    }
 
     public void deleteRide(int id) {
             Ride ride = getRideById(id);
