@@ -26,13 +26,13 @@ public class RideController {
 
     @PostMapping("")
     public ResponseEntity<Ride> postRide( @RequestParam Date date,@RequestParam String depart, @RequestParam String arrival,@RequestParam int userId,  @RequestHeader(HttpHeaders.AUTHORIZATION) String token) {
-        RestClient<String, String> restClient = new RestClient<>();
-        UserDTO userDTO = getUser(userId, token).getBody().getUserDTO();
-        if(restClient.testToken(token, String.class) && userDTO.isDriver()) {
+//        RestClient<String, String> restClient = new RestClient<>();
+//        UserDTO userDTO = getUser(userId, token).getBody().getUserDTO();
+//        if(restClient.testToken(token, String.class) && userDTO.isDriver()) {
             Ride ride = rideService.createRide(date,depart,arrival,userId);
             return ResponseEntity.ok(ride);
-        }
-        return ResponseEntity.status(401).body(null);
+//        }
+//        return ResponseEntity.status(401).body(null);
     }
 
     @GetMapping("")
@@ -48,21 +48,21 @@ public class RideController {
 
     @GetMapping("user/{userId}")
     public ResponseEntity<RideResponseDTO> getUser(@PathVariable int userId,@RequestHeader(HttpHeaders.AUTHORIZATION) String token) {
-        RestClient<String, String> restClient = new RestClient<>();
-        if(restClient.testToken(token, String.class)) {
+//        RestClient<String, String> restClient = new RestClient<>();
+//        if(restClient.testToken(token, String.class)) {
             return ResponseEntity.ok(rideService.getRideByUserId(userId));
-        }
-        return ResponseEntity.status(401).body(null);
+//        }
+//        return ResponseEntity.status(401).body(null);
     }
 
     @PutMapping("{rideId}/add/{userId}")
     public ResponseEntity<Ride> addUser(@PathVariable int rideId, @PathVariable int userId, @RequestHeader(HttpHeaders.AUTHORIZATION) String token) {
-        RestClient<String, String> restClient = new RestClient<>();
-        if(restClient.testToken(token, String.class)) {
+//        RestClient<String, String> restClient = new RestClient<>();
+//        if(restClient.testToken(token, String.class)) {
             Ride ride = rideService.updateUserRide(rideId,userId);
             return ResponseEntity.ok(ride);
-        }
-        return ResponseEntity.status(401).body(null);
+//        }
+//        return ResponseEntity.status(401).body(null);
     }
 
 
@@ -80,12 +80,12 @@ public class RideController {
 
     @GetMapping("{rideId}")
     public ResponseEntity<Ride> get(@PathVariable int rideId,@RequestHeader(HttpHeaders.AUTHORIZATION) String token) {
-        RestClient<String, String> restClient = new RestClient<>();
-        if(restClient.testToken(token, String.class)) {
+//        RestClient<String, String> restClient = new RestClient<>();
+//        if(restClient.testToken(token, String.class)) {
             Ride ride = rideService.getRideById(rideId);
             return ResponseEntity.ok(ride);
-        }
-        return ResponseEntity.status(401).body(null);
+//        }
+//        return ResponseEntity.status(401).body(null);
     }
 
     @DeleteMapping("delete/{rideId}")
