@@ -21,7 +21,7 @@ public class RideServiceTest {
     RideService rideService;
 
     @Test
-    void testRide(){
+    void testCreateRide(){
 
 
     }
